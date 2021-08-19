@@ -1,9 +1,11 @@
 <script>
   import { Container } from "sveltestrap";
 
-  const REDIRECT = "http://localhost:3000";
+  const REDIRECT = "http://localhost:5000";
   const CLIENT_ID = "e3c52dc073bb460cbabfabfdf10c4463"; // Public
-  const AUTH_URL = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT}&scope=streaming user-read-email user-read-private user-library-read user-library-modify user-read-playback-state user-modify-playback-state`;
+  const AUTH_URL = encodeURI(
+  `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT}&scope=streaming user-read-email user-read-private user-library-read user-library-modify user-read-playback-state user-modify-playback-state`
+);
 </script>
 
 <Container 
