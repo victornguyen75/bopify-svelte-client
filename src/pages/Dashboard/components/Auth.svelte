@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import axios from "axios";
-  import { accessToken } from "../stores";
+  import { accessToken } from "./stores";
   
   export let code = "";
 
