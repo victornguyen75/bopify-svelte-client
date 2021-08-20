@@ -8,7 +8,9 @@
   let refreshToken = "";
   let expiresIn = "";
 
-  onMount(async () => {
+  $: code, onMount(getTokens)
+
+  const getTokens = async () => {
     try {
       const res = await axios.post("http://localhost:5001/login", {
         code,
@@ -23,5 +25,5 @@
       console.error(e)
       window.location = "/";
     }
-  })
+  }
 </script>
