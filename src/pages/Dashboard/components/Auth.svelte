@@ -8,7 +8,8 @@
   let refreshToken = "";
   let expiresIn = "";
 
-  $: code, onMount(getTokens)
+  $: code, onMount(getTokens);
+  $: refreshToken, expiresIn, handleRefresh;
 
   const getTokens = async () => {
     try {
@@ -25,5 +26,26 @@
       console.error(e)
       window.location = "/";
     }
-  }
+  };
+
+  const handleRefresh = () => {
+    if (!refreshToken || !expiresIn) return;
+
+    const interval = setInterval(async () => {
+      try {
+        const res = await axios.post("http://localhost:5001/refresh", {
+        refreshToken,
+      });
+      accessToken.set(res.data.accessToken)
+      expiresIn = res.data.expiresIn;
+
+      window.history.pushState({}, null, "/");
+
+    } catch(e) {
+      console.error(e)
+      window.location = "/";
+    }}, (expiresIn - 60) * 1000);
+
+    return () => clearInterval(interval);
+  };
 </script>
