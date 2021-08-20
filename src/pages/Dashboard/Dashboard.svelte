@@ -1,5 +1,10 @@
 <script>
+  import Auth from "./components/Auth.svelte";
+  import { accessToken } from "./stores";
+
   export let code = "";
 </script>
 
-<div>{code}</div>
+<Auth {code}/>
+<p>{$accessToken}</p>
+<p>{code}</p>
