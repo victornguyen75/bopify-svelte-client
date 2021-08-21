@@ -4,6 +4,7 @@
 
   import Auth from "./components/Auth.svelte";
   import { accessToken } from "./components/stores";
+  import TrackSearchResults from "./components/TrackSearchResults.svelte";
 
   export let code = "";
 
@@ -47,14 +48,15 @@
 </script>
 
 <Auth {code}/>
-<Container 
-  class="d-flex flex-column py-2"
-  style="height: 100vh"  
->
+<Container class="d-flex flex-column py-2" style="height: 100vh">
   <input 
     type="text"
     placeholder="Search Songs/Artists"
     bind:value={search}
   />
-  <div class="flex-grow-1 my-2" style="overflowY: auto"></div>
+  <div class="flex-grow-1 my-2" style="overflowY: auto">
+    {#each searchResults as track}
+      <TrackSearchResults {track} />
+    {/each}
+  </div>
 </Container>
