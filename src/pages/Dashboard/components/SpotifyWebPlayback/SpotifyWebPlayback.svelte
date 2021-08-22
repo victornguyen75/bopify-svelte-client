@@ -89,7 +89,7 @@
   }
   .track-info {
     display: grid;
-    grid-template-rows: 22px 35px 23px;
+    grid-template-rows: 5px 40px 30px;
     width: 100%;
   }
   .play-pause {
