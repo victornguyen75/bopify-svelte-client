@@ -43,7 +43,7 @@
       <div class="bottom">
         <div class="progress-bar">
           <!-- <div class="progress" style={`width: ${position/state.duration*100}%;`}></div> -->
-          <div class="progress" style={`width: ${50000*100}%;`}></div>
+          <div class="progress" style={`width: 75%;`}></div>
         </div>
         <!-- <div><small>{msToMinSec(state.duration)}</small></div> -->
         <div><small>{msToMinSec(50000)}</small></div>
