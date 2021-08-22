@@ -5,6 +5,7 @@
   import Auth from "./components/Auth.svelte";
   import { accessToken } from "./components/stores";
   import TrackSearchResults from "./components/TrackSearchResults.svelte";
+  import SpotifyWebPlayback from "./components/SpotifyWebPlayback/SpotifyWebPlayback.svelte";
 
   export let code = "";
 
@@ -64,6 +65,11 @@
     {/each}
   </div>
   <div>
-    
+    <SpotifyWebPlayback
+      artist={selectedTrack.artist}
+      title={selectedTrack.title}
+      uri={selectedTrack.uri}
+      albumUrl={selectedTrack.albumUrl}
+    />
   </div>
 </Container>
