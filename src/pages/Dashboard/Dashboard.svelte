@@ -1,17 +1,18 @@
 <script>
   import { Container } from "sveltestrap";
   import SpotifyWebApi from "spotify-web-api-node";
-
+  
   import Auth from "./components/Auth.svelte";
   import { accessToken } from "./components/stores";
   import TrackSearchResults from "./components/TrackSearchResults.svelte";
 
   export let code = "";
 
-  let search = "";
-  let searchResults = [];
   const CLIENT_ID = "e3c52dc073bb460cbabfabfdf10c4463"; // Public
   const spotifyApi = new SpotifyWebApi({ clientId: CLIENT_ID });
+  let search = "";
+  let searchResults = [];
+  let selectedTrack = {};
 
   $: {
     if ($accessToken) {
@@ -44,7 +45,10 @@
     }
   }
 
-
+  const handleSelectedTrack = (track) => {
+    selectedTrack = track;
+    searchResults = [];
+  }
 </script>
 
 <Auth {code}/>
@@ -56,7 +60,10 @@
   />
   <div class="flex-grow-1 my-2" style="overflowY: auto">
     {#each searchResults as track}
-      <TrackSearchResults {track} />
+      <TrackSearchResults {track} {handleSelectedTrack} />
     {/each}
+  </div>
+  <div>
+    
   </div>
 </Container>
