@@ -58,7 +58,7 @@
     bind:value={search}
     {disabled}
   />
-  <div class="flex-grow-1 my-2" style="overflowY: auto">
+  <div class="flex-grow-1 my-2">
     {#each searchResults as track}
       <TrackSearchResults {track} {handleSelectedTrack} />
     {/each}
