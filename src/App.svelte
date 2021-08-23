@@ -1,9 +1,8 @@
 <script>
   import { Container } from "sveltestrap";
-  import { WebPlayback } from 'svelte-spotify-web-playback';
 	import "bootstrap/dist/css/bootstrap.min.css";
 
-	import { SearchBar, Auth } from "./components/index";
+	import { SearchBar, Auth, WebPlayback } from "./components/index";
 
   const CLIENT_ID = "e3c52dc073bb460cbabfabfdf10c4463"; // Public
 	let counter = 0;
