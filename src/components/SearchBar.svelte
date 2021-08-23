@@ -5,7 +5,7 @@
   import { accessToken } from "./stores";
   import TrackSearchResults from "./TrackSearchResults.svelte";
 
-  export let counter = 0;
+  export let loginCounter = 0;
   export let clientId;
 
   const spotifyApi = new SpotifyWebApi({ clientId });
@@ -13,6 +13,7 @@
   let searchResults = [];
   let selectedTrack = {};
 
+  $: disabled = loginCounter < 2;
   $: {
     if ($accessToken) {
       spotifyApi.setAccessToken($accessToken);
@@ -53,9 +54,9 @@
 <Container class="d-flex flex-column py-2" style={searchResults.length === 0 ? "height: 100vh" : ""}>
   <input 
     type="text"
-    placeholder={counter < 2 ? "Login First" : "Search Songs/Artists"}
+    placeholder={disabled ? "Login First" : "Search Songs/Artists"}
     bind:value={search}
-    disabled={counter < 2}
+    {disabled}
   />
   <div class="flex-grow-1 my-2" style="overflowY: auto">
     {#each searchResults as track}

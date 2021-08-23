@@ -5,14 +5,14 @@
 	import { SearchBar, Auth, WebPlayback } from "./components/index";
 
   const CLIENT_ID = "e3c52dc073bb460cbabfabfdf10c4463"; // Public
-	let counter = 0;
+	let loginCounter = 0;
 
 </script>
 
 <Auth />
 <Container class="d-flex flex-column py-2" style="height: 100vh">
-	<SearchBar {counter} clientId={CLIENT_ID} />
-  <div on:click={() => counter += 1}>
+	<SearchBar {loginCounter} clientId={CLIENT_ID} />
+  <div on:click={() => loginCounter += 1}>
     <WebPlayback client_id={CLIENT_ID} />
   </div>
 </Container>
