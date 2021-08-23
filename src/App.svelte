@@ -9,6 +9,15 @@
 
 </script>
 
+<Auth />
+<Container class="d-flex flex-column py-2" style="height: 100vh">
+	<SearchBar {counter} clientId={CLIENT_ID} />
+  <div on:click={() => counter += 1}>
+    <WebPlayback client_id={CLIENT_ID} />
+  </div>
+</Container>
+
+
 <style>
 	:global(button) {
     width: 100%;
@@ -40,11 +49,3 @@
 		grid-template-rows: 20px 40px 30px !important;
 	}
 </style>
-
-<Auth />
-<Container class="d-flex flex-column py-2" style="height: 100vh">
-	<SearchBar {counter} clientId={CLIENT_ID} />
-  <div on:click={() => counter += 1}>
-    <WebPlayback client_id={CLIENT_ID} />
-  </div>
-</Container>
