@@ -3,8 +3,7 @@
   import { WebPlayback } from 'svelte-spotify-web-playback';
 	import "bootstrap/dist/css/bootstrap.min.css";
 
-	import SearchBar from "./components/SearchBar.svelte";
-  import Auth from "./components/Auth.svelte";
+	import { SearchBar, Auth } from "./components/index";
 
   const CLIENT_ID = "e3c52dc073bb460cbabfabfdf10c4463"; // Public
 	let counter = 0;
@@ -45,7 +44,7 @@
 
 <Auth />
 <Container class="d-flex flex-column py-2" style="height: 100vh">
-	<SearchBar {counter} />
+	<SearchBar {counter} clientId={CLIENT_ID} />
   <div on:click={() => counter += 1}>
     <WebPlayback client_id={CLIENT_ID} />
   </div>

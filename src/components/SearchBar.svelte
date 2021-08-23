@@ -6,9 +6,9 @@
   import TrackSearchResults from "./TrackSearchResults.svelte";
 
   export let counter = 0;
+  export let clientId;
 
-  const CLIENT_ID = "e3c52dc073bb460cbabfabfdf10c4463"; // Public
-  const spotifyApi = new SpotifyWebApi({ clientId: CLIENT_ID });
+  const spotifyApi = new SpotifyWebApi({ clientId });
   let search = "";
   let searchResults = [];
   let selectedTrack = {};

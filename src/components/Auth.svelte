@@ -5,5 +5,5 @@
     accessToken.set(detail.token)
   }
 
-  document.addEventListener("token", getTokensV2);
+  document.addEventListener("login-success", getTokensV2);
 </script>
