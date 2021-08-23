@@ -805,11 +805,6 @@ supports-color@^7.0.0:
   dependencies:
     has-flag "^4.0.0"
 
-svelte-spotify-web-playback@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/svelte-spotify-web-playback/-/svelte-spotify-web-playback-1.0.3.tgz#334550feb2b448f9b569d7f0f53ae716f48d4aed"
-  integrity sha512-MKd79uZ3kFxTDXMz9Cv6yQCiK2lzSeuDEL+3FXs8KFW3+B2HANDZtYpaBKueVxhYcVLPLY/9Ml1wrBjALvd9vA==
-
 svelte@^3.0.0:
   version "3.42.1"
   resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.42.1.tgz#d4b4d9068cce911835f7c6b8ff1d290e1a0b5657"
