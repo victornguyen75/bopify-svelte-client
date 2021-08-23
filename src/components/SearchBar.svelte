@@ -2,12 +2,10 @@
   import { Container } from "sveltestrap";
   import SpotifyWebApi from "spotify-web-api-node";
   
-  import Auth from "./components/Auth.svelte";
-  import { accessToken } from "./components/stores";
-  import TrackSearchResults from "./components/TrackSearchResults.svelte";
-  import SpotifyWebPlayback from "./components/SpotifyWebPlayback/SpotifyWebPlayback.svelte";
+  import { accessToken } from "./stores";
+  import TrackSearchResults from "./TrackSearchResults.svelte";
 
-  export let code = "";
+  export let counter = 0;
 
   const CLIENT_ID = "e3c52dc073bb460cbabfabfdf10c4463"; // Public
   const spotifyApi = new SpotifyWebApi({ clientId: CLIENT_ID });
@@ -52,24 +50,16 @@
   }
 </script>
 
-<Auth {code}/>
 <Container class="d-flex flex-column py-2" style="height: 100vh">
   <input 
     type="text"
-    placeholder="Search Songs/Artists"
+    placeholder={counter < 2 ? "Login First" : "Search Songs/Artists"}
     bind:value={search}
+    disabled={counter < 2}
   />
   <div class="flex-grow-1 my-2" style="overflowY: auto">
     {#each searchResults as track}
       <TrackSearchResults {track} {handleSelectedTrack} />
     {/each}
-  </div>
-  <div>
-    <SpotifyWebPlayback
-      artist={selectedTrack.artist}
-      title={selectedTrack.title}
-      uri={selectedTrack.uri}
-      albumUrl={selectedTrack.albumUrl}
-    />
   </div>
 </Container>
