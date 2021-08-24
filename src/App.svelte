@@ -6,7 +6,6 @@
 
   const CLIENT_ID = "e3c52dc073bb460cbabfabfdf10c4463"; // Public
 	let loginCounter = 0;
-
 </script>
 
 <Auth />
@@ -19,7 +18,6 @@
     <WebPlayback client_id={CLIENT_ID} />
   </div>
 </Container>
-
 
 <style>
 	:global(button) {
