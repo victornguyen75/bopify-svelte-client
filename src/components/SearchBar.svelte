@@ -45,7 +45,7 @@
   }
 
   const handleSelectedTrack = (track) => {
-    const uris = [track];
+    const uris = [track.uri];
     searchResults = [];
 
     let context_uri, offset = 0;
