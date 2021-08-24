@@ -11,6 +11,9 @@
 
 <Auth />
 <Container class="d-flex flex-column py-2" style="height: 100vh">
+	<div class="d-flex">
+		<h1>Bopify</h1>
+	</div>
 	<SearchBar {loginCounter} clientId={CLIENT_ID} />
   <div on:click={() => loginCounter += 1}>
     <WebPlayback client_id={CLIENT_ID} />
