@@ -1,9 +1,9 @@
 <script>
-  import { accessToken } from "./stores";
+  import { playerState } from "./stores";
   
-  const getTokensV2 = ({ detail }) => {
-    accessToken.set(detail.token)
+  const getPlayerState = ({ detail }) => {
+    playerState.set(detail.state)
   }
 
-  document.addEventListener("login-success", getTokensV2);
+  document.addEventListener("login-success", getPlayerState);
 </script>

@@ -2,7 +2,7 @@
   import { Container } from "sveltestrap";
   import SpotifyWebApi from "spotify-web-api-node";
   
-  import { accessToken } from "./stores";
+  import { playerState } from "./stores";
   import TrackSearchResults from "./TrackSearchResults.svelte";
 
   export let loginCounter = 0;
@@ -11,17 +11,16 @@
   const spotifyApi = new SpotifyWebApi({ clientId });
   let search = "";
   let searchResults = [];
-  let selectedTrack = {};
 
   $: disabled = loginCounter < 2;
   $: {
-    if ($accessToken) {
-      spotifyApi.setAccessToken($accessToken);
+    if ($playerState.accessToken) {
+      spotifyApi.setAccessToken($playerState.accessToken);
     }
   }
 
   $: {
-    if (!accessToken || !search) {
+    if (!$playerState.accessToken || !search) {
       searchResults = [];
     } else {
       spotifyApi.searchTracks(search).then((res) => {
@@ -46,8 +45,34 @@
   }
 
   const handleSelectedTrack = (track) => {
-    selectedTrack = track;
+    const uris = [track];
     searchResults = [];
+
+    let context_uri, offset = 0;
+    let body;
+
+    if (context_uri) {
+      const isArtist = context_uri.indexOf('artist') >= 0;
+      let position;
+
+      /* istanbul ignore else */
+      if (!isArtist) {
+        position = { position: offset };
+      }
+
+      body = JSON.stringify({ context_uri, offset: position });
+    } else if (Array.isArray(uris) && uris.length) {
+      body = JSON.stringify({ uris, offset: { position: offset } });
+    }
+
+    return fetch(`https://api.spotify.com/v1/me/player/play?device_id=${$playerState.deviceId}`, {
+      body,
+      headers: {
+        Authorization: `Bearer ${$playerState.accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      method: 'PUT',
+    });
   }
 </script>
 

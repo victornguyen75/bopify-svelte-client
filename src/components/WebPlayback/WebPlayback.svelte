@@ -11,7 +11,7 @@ import { onMount, onDestroy } from 'svelte';
 import { loadSpotifyPlayer, STATUS, setDevice } from './internal/_utils';
 import { PKCE } from './internal/_auth/pkce';
 import BasicPlayer from './internal/_basicPlayer.svelte';
-//import type { AuthorizationContext, AuthorizationObject } from './types/common';
+
 /**
  * Spotify Authenticator
  */
@@ -221,7 +221,7 @@ export function selectDevice() {
         return;
     }
     setDevice(internalState.accessToken, internalState.deviceId);
-    document.dispatchEvent(new CustomEvent("login-success", { detail: { token: internalState.accessToken } } ))
+    document.dispatchEvent(new CustomEvent("login-success", { detail: { state: internalState } } ))
 }
 </script>
 
