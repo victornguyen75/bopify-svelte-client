@@ -42,7 +42,7 @@
       })
     }
   $: if (selectedTrack.title) { 
-    axios.get("https://localhost:5001/lyrics", {
+    axios.get("http://localhost:5001/lyrics", {
       params: {
         track: selectedTrack.title,
         artist: selectedTrack.artist,
