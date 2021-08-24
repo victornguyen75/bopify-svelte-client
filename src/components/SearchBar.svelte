@@ -1,7 +1,8 @@
 <script>
   import { Container } from "sveltestrap";
   import SpotifyWebApi from "spotify-web-api-node";
-  
+  import axios from "axios";
+
   import { playerState } from "./stores";
   import TrackSearchResults from "./TrackSearchResults.svelte";
 
@@ -11,16 +12,14 @@
   const spotifyApi = new SpotifyWebApi({ clientId });
   let search = "";
   let searchResults = [];
+  let selectedTrack = {};
+  let lyrics = ""
 
   $: disabled = loginCounter < 2;
-  $: {
-    if ($playerState.accessToken) {
+  $: if ($playerState.accessToken) {
       spotifyApi.setAccessToken($playerState.accessToken);
     }
-  }
-
-  $: {
-    if (!$playerState.accessToken || !search) {
+  $: if (!$playerState.accessToken || !search) {
       searchResults = [];
     } else {
       spotifyApi.searchTracks(search).then((res) => {
@@ -42,11 +41,24 @@
         });
       })
     }
+  $: if (selectedTrack.title) { 
+    axios.get("https://localhost:5001/lyrics", {
+      params: {
+        track: selectedTrack.title,
+        artist: selectedTrack.artist,
+      },
+    }).then((res) => {
+      lyrics = res.data.lyrics;
+    }).catch((e) => {
+      console.error(e);
+    });
   }
-
+  
   const handleSelectedTrack = (track) => {
     const uris = [track.uri];
+    selectedTrack = track;
     searchResults = [];
+    lyrics = "";
 
     let context_uri, offset = 0;
     let body;
@@ -87,5 +99,10 @@
     {#each searchResults as track}
       <TrackSearchResults {track} {handleSelectedTrack} />
     {/each}
+    {#if searchResults.length === 0}
+      <div class="text-center" style="white-space: pre">
+        {lyrics}
+      </div>
+    {/if}
   </div>
 </Container>
