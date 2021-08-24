@@ -13,7 +13,7 @@
   let search = "";
   let searchResults = [];
   let selectedTrack = {};
-  let lyrics = ""
+  let lyrics = localStorage.getItem("lyrics") || "";
 
   $: disabled = loginCounter < 2;
   $: if ($playerState.accessToken) {
@@ -49,6 +49,7 @@
       },
     }).then((res) => {
       lyrics = res.data.lyrics;
+      localStorage.setItem("lyrics", lyrics);
     }).catch((e) => {
       console.error(e);
     });
@@ -88,7 +89,7 @@
   }
 </script>
 
-<Container class="d-flex flex-column py-2" style={searchResults.length === 0 ? "height: 100vh" : ""}>
+<Container class="d-flex flex-column py-2" style={searchResults.length === 0 && lyrics.length === 0 ? "height: 100vh" : ""}>
   <input 
     type="text"
     placeholder={disabled ? "Login First" : "Search Songs/Artists"}
@@ -99,10 +100,16 @@
     {#each searchResults as track}
       <TrackSearchResults {track} {handleSelectedTrack} />
     {/each}
-    {#if searchResults.length === 0}
-      <div class="text-center" style="white-space: pre">
+    {#if searchResults.length === 0 && $playerState.status === "READY"}
+      <div class="text-center lyrics">
         {lyrics}
       </div>
     {/if}
   </div>
 </Container>
+
+<style>
+  .lyrics {
+    white-space: pre;
+  }
+</style>
