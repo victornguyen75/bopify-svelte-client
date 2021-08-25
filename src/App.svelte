@@ -3,8 +3,8 @@
 	import "bootstrap/dist/css/bootstrap.min.css";
 
 	import { SearchBar, Auth, WebPlayback } from "./components/index";
-	import DarkModeIcon from "./components/DarkModeIcon";
-	import LightModeIcon from "./components/LightModeIcon";
+	import DarkModeIcon from "./components/DarkModeIcon.svelte";
+	import LightModeIcon from "./components/LightModeIcon.svelte";
 
   const CLIENT_ID = "e3c52dc073bb460cbabfabfdf10c4463"; // Public
 	let loginCounter = 0;
