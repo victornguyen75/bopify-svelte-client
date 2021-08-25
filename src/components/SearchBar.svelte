@@ -1,5 +1,4 @@
 <script>
-  import { Container } from "sveltestrap";
   import SpotifyWebApi from "spotify-web-api-node";
   import axios from "axios";
 
@@ -89,7 +88,7 @@
   }
 </script>
 
-<Container class="d-flex flex-column py-2" style={searchResults.length === 0 && lyrics.length === 0 ? "height: 100vh" : ""}>
+<div class="d-flex flex-column py-2" style={searchResults.length === 0 && lyrics.length === 0 ? "height: 100vh" : ""}>
   <input 
     type="text"
     placeholder={disabled ? "Login First" : "Search Songs/Artists"}
@@ -106,7 +105,7 @@
       </div>
     {/if}
   </div>
-</Container>
+</div>
 
 <style>
   .lyrics {

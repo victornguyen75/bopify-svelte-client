@@ -271,3 +271,25 @@ export function selectDevice() {
   {/if}
 
 {/if}
+
+<style>
+    button {
+        width: 100%;
+		padding: .5rem 1rem;
+		font-size: 1.25rem !important;
+		border-radius: .3rem !important;
+		color: #fff;
+		background-color: #198754;
+		border-color: #198754;
+		display: inline-block;
+		font-weight: 400;
+		line-height: 1.5 !important;
+		text-align: center;
+		text-decoration: none;
+		vertical-align: middle;
+		cursor: pointer !important;
+		user-select: none;
+		border: 1px solid transparent;	
+		transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+</style>

@@ -57,7 +57,7 @@
   .basic-player {
     font-family: sans-serif, Helvetica, Arial;
     font-size: smaller;
-    display: inline-grid;
+    display: flex;
     position: relative;
     grid-template-columns: 80px 1fr;
     background: #3e3d3d;
@@ -78,6 +78,7 @@
     border-bottom-left-radius: 0;
     min-width: 180px;
     padding: 0 .5em;
+    width: 100%;
   }
   .album-image, img {
     border-top-left-radius: inherit;
@@ -89,7 +90,7 @@
   }
   .track-info {
     display: grid;
-    grid-template-rows: 22px 35px 23px;
+    grid-template-rows: 20px 40px 30px;
     width: 100%;
   }
   .play-pause {
