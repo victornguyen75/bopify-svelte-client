@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import { Container } from "sveltestrap";
 	import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -15,6 +16,16 @@
 
   const CLIENT_ID = "e3c52dc073bb460cbabfabfdf10c4463"; // Public
 	let loginCounter = 0;
+
+  const toggleButtonColor = () => {
+    const toggler = document.getElementById("theme-toggler");
+    if (toggler) {
+      toggler.style.setProperty('--btnBackground', $theme.btnBackground);
+    }
+  }
+
+  onMount(toggleButtonColor)
+  $: toggleButtonColor($theme.btnBackground)
 </script>
 
 <Auth />
@@ -38,6 +49,10 @@
 </GlobalStyles>
 
 <style>
+  :root {
+    --btnBackground: "";
+  }
+
 	#theme-toggler {
 		display: inline-block;
     font-weight: 400;
@@ -56,6 +71,6 @@
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     margin-left: auto;
     margin-bottom: 2rem;
-    background: #b3b3b3;
+    background: var(--btnBackground);
 	}
 </style>
