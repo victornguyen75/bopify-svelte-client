@@ -1,13 +1,9 @@
 <script>
   import { onMount } from "svelte";
 
-	import {
-    DarkModeIcon,
-    LightModeIcon,
-    theme,
-    toggleTheme,
-  } from "./index";
-
+  import DarkModeIcon from "./DarkModeIcon.svelte";
+  import LightModeIcon from "./LightModeIcon.svelte";
+  import { theme, toggleTheme } from "./ThemeProvider";
   
   const toggleButtonColor = () => {
     const toggler = document.getElementById("theme-toggler");
