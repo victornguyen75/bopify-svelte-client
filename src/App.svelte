@@ -2,9 +2,16 @@
   import { Container } from "sveltestrap";
 	import "bootstrap/dist/css/bootstrap.min.css";
 
-	import { SearchBar, Auth, WebPlayback, GlobalStyles, theme, toggleTheme } from "./components/index";
-	import DarkModeIcon from "./components/DarkModeIcon.svelte";
-	import LightModeIcon from "./components/LightModeIcon.svelte";
+	import {
+    Auth,
+    SearchBar,
+    WebPlayback,
+    GlobalStyles,
+    DarkModeIcon,
+    LightModeIcon,
+    theme,
+    toggleTheme,
+  } from "./components/index";
 
   const CLIENT_ID = "e3c52dc073bb460cbabfabfdf10c4463"; // Public
 	let loginCounter = 0;
