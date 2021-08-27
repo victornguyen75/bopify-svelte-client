@@ -5,4 +5,7 @@ export const lightTheme = {
   btnBackground: "#b3b3b3",
 };
 
-export const lightThemePlayer = {};
+export const lightThemePlayer = {
+  background: "#3e3d3d",
+  color: "#ffffff",
+};

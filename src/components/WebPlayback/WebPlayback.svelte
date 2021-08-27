@@ -12,6 +12,8 @@ import { loadSpotifyPlayer, STATUS, setDevice } from './internal/_utils';
 import { PKCE } from './internal/_auth/pkce';
 import BasicPlayer from './internal/_basicPlayer.svelte';
 
+import { theme, darkThemePlayer, lightThemePlayer } from "../ThemeProvider";
+
 /**
  * Spotify Authenticator
  */
@@ -51,6 +53,10 @@ export let volume = 0.5;
   scopes,
   state
 }; */
+/**
+ * Light/Dark Mode Theme colors
+ */
+$: themePlayer = $theme.name === "light" ? lightThemePlayer : darkThemePlayer;
 /* Component state at initialization */
 let initialState = {
     deviceId: '',
@@ -258,7 +264,7 @@ export function selectDevice() {
     {/if}
     {#if isReady && internalState.isActive}
       <slot name="player" player={player} state={playbackState}>
-        <BasicPlayer {player} state={playbackState} />
+        <BasicPlayer {themePlayer} {player} state={playbackState} />
       </slot>
     {/if}
     {#if !isLoading}

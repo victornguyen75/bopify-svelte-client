@@ -4,11 +4,18 @@
   import { cubicOut, cubicIn } from 'svelte/easing';
 
   export let player, state;
+  export let themePlayer;
   let hovered = false;
 
   $: album_url = (_b = (_a = state.track_window.current_track.album.images) === null || _a === void 0 ? void 0 : _a.find((i) => i.width === 64)) === null || _b === void 0 ? void 0 : _b.url;
   $: position = state.position;
-
+  $: {
+    const player = document.getElementById("player");
+    if (player) {
+      player.style.setProperty('--playerBackground', themePlayer.background);
+      player.style.setProperty('--playerColor', themePlayer.color);
+    }
+  }
   /**
    * When song is playing, adds progress to position.
    * Use this to display progress of the song.
@@ -16,7 +23,7 @@
   onInterval(() => position += state.paused ? 0 : 300, 300);
 </script>
 
-<div class="basic-player" on:mouseenter={() => hovered = true} on:mouseleave={() => hovered = false}>
+<div id="player" class="basic-player" on:mouseenter={() => hovered = true} on:mouseleave={() => hovered = false}>
   <div class="left-slot">
     <div class="album-image">
       {#key album_url}
@@ -55,6 +62,8 @@
 
 <style>
   .basic-player {
+    --playerBackground: "";
+    --playerColor: "";
     font-family: sans-serif, Helvetica, Arial;
     font-size: smaller;
     display: flex;
@@ -65,6 +74,8 @@
     box-shadow: 3px 2px 4px 0px #0003;
     place-items: center;
     border-radius: 3px;
+    background-color: var(--playerBackground) !important;
+    color: var(--playerColor) !important;
   }
   .left-slot, .right-slot {
     display: grid;
