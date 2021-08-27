@@ -29,11 +29,8 @@
 
 
 <style>
-  :root {
-    --btnBackground: "";
-  }
-
 	#theme-toggler {
+    --btnBackground: "";
 		display: inline-block;
     font-weight: 400;
     line-height: 1.5;
