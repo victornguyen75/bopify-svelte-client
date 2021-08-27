@@ -7,7 +7,12 @@ import GlobalStyles from "./GlobalStyles.svelte";
 import DarkModeIcon from "./DarkModeIcon.svelte";
 import LightModeIcon from "./LightModeIcon.svelte";
 import { playerState } from "./stores";
-import { theme, toggleTheme } from "./ThemeProvider";
+import {
+  theme,
+  toggleTheme,
+  darkThemePlayer,
+  lightThemePlayer,
+} from "./ThemeProvider";
 export {
   Auth,
   Header,
@@ -19,5 +24,7 @@ export {
   LightModeIcon,
   playerState,
   theme,
+  darkThemePlayer,
+  lightThemePlayer,
   toggleTheme,
 };

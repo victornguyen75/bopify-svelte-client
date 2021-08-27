@@ -1,4 +1,4 @@
-const darkTheme = {
+export const darkTheme = {
   name: "dark",
   background: "#121212",
   color: "#1db954",
@@ -13,5 +13,3 @@ export const darkThemePlayer = {
   sliderHandleColor: "#1db954",
   activeColor: "#1db954",
 };
-
-export default darkTheme;

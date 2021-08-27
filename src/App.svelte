@@ -9,6 +9,8 @@
     WebPlayback,
     GlobalStyles,
     theme,
+    darkThemePlayer,
+    lightThemePlayer,
   } from "./components/index";
 
   const CLIENT_ID = "e3c52dc073bb460cbabfabfdf10c4463"; // Public
@@ -21,7 +23,10 @@
       <Header />
       <SearchBar {loginCounter} clientId={CLIENT_ID} />
       <div on:click={() => loginCounter += 1}>
-        <WebPlayback client_id={CLIENT_ID} />
+        <WebPlayback
+          client_id={CLIENT_ID}
+          theme={$theme.name === "light" ? lightThemePlayer : darkThemePlayer}
+        />
       </div>
     </Container>
 </GlobalStyles>

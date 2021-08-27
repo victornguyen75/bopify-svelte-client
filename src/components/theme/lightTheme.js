@@ -1,4 +1,4 @@
-const lightTheme = {
+export const lightTheme = {
   name: "light",
   background: "",
   color: "",
@@ -6,5 +6,3 @@ const lightTheme = {
 };
 
 export const lightThemePlayer = {};
-
-export default lightTheme;
