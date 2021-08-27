@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from "svelte";
   import { Container } from "sveltestrap";
 	import "bootstrap/dist/css/bootstrap.min.css";
 
