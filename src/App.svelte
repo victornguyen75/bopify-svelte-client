@@ -2,7 +2,7 @@
   import { Container } from "sveltestrap";
 	import "bootstrap/dist/css/bootstrap.min.css";
 
-	import { SearchBar, Auth, WebPlayback } from "./components/index";
+	import { SearchBar, Auth, WebPlayback, GlobalStyles, theme, toggleTheme } from "./components/index";
 	import DarkModeIcon from "./components/DarkModeIcon.svelte";
 	import LightModeIcon from "./components/LightModeIcon.svelte";
 
@@ -11,19 +11,24 @@
 </script>
 
 <Auth />
-<Container class="d-flex flex-column py-2" style="height: 100vh">
-	<div class="d-flex">
-		<h1>Bopify</h1>
-		<button id="theme-toggler">
-			<DarkModeIcon />
-			<!-- <LightModeIcon /> -->
-		</button>
-	</div>
-	<SearchBar {loginCounter} clientId={CLIENT_ID} />
-  <div on:click={() => loginCounter += 1}>
-    <WebPlayback client_id={CLIENT_ID} />
-  </div>
-</Container>
+<GlobalStyles background={$theme.background} color={$theme.color}>
+  <Container class="d-flex flex-column py-2" style="height: 100vh">
+      <div class="d-flex">
+        <h1>Bopify</h1>
+        <button id="theme-toggler" on:click={() => toggleTheme($theme.name)}>
+          {#if $theme.name === "light"}
+            <DarkModeIcon />
+          {:else}
+            <LightModeIcon />
+          {/if}
+        </button>
+      </div>
+      <SearchBar {loginCounter} clientId={CLIENT_ID} />
+      <div on:click={() => loginCounter += 1}>
+        <WebPlayback client_id={CLIENT_ID} />
+      </div>
+    </Container>
+</GlobalStyles>
 
 <style>
 	#theme-toggler {
