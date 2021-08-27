@@ -1,21 +1,29 @@
 <script lang="ts">var _a, _b;
+  import { onMount } from "svelte";
+
   import { onInterval, msToMinSec, SpotifyLogo } from './_utils';
   import { fade } from 'svelte/transition';
   import { cubicOut, cubicIn } from 'svelte/easing';
 
   export let player, state;
-  export let themePlayer;
+  export let themePlayer = {
+    background: "#3e3d3d",
+    color: "#ffffff",
+  };
   let hovered = false;
 
-  $: album_url = (_b = (_a = state.track_window.current_track.album.images) === null || _a === void 0 ? void 0 : _a.find((i) => i.width === 64)) === null || _b === void 0 ? void 0 : _b.url;
-  $: position = state.position;
-  $: {
+  const setTheme = () => {
     const player = document.getElementById("player");
     if (player) {
       player.style.setProperty('--playerBackground', themePlayer.background);
       player.style.setProperty('--playerColor', themePlayer.color);
     }
   }
+
+  onMount(setTheme);
+  $: album_url = (_b = (_a = state.track_window.current_track.album.images) === null || _a === void 0 ? void 0 : _a.find((i) => i.width === 64)) === null || _b === void 0 ? void 0 : _b.url;
+  $: position = state.position;
+  $: themePlayer.background, themePlayer.color, setTheme()
   /**
    * When song is playing, adds progress to position.
    * Use this to display progress of the song.
